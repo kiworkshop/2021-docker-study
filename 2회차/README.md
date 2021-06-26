@@ -6,7 +6,7 @@
 - 푸시한 이미지를 누구나 사용할 수 있도록 간단한 문서를 만들어보자.
 
 ## 실습 과제
-- localstack docker image를 이용해 로컬 환경애서 가상의 클라우드 환경을 구축해보자.
+- localstack docker image를 이용해 로컬 환경에서 가상의 클라우드 환경을 구축해보자.
 
 ### stage 1
 - 공식 Localstack docker image를 이용해 container를 생성한다.
