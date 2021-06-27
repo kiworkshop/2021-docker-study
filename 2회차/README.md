@@ -18,3 +18,6 @@
 - 작업한 웹 어플리케이션 서버를 Dockefile을 활용해 이미지로 만들어본다.
 - 위에서 만든 localstack 이미지를 컨테이너로 띄우고, 이미지로 만든 웹 어플리케이션을 localstack 컨테이너에 연결되는 또다른 컨테이너로 띄울 수 있도록 해 본다.
 - 스프링 웹 어플리케이션 컨테이너를 docker hub에 배포한다. locakstack 컨테이너와 연동하여 띄워본 경험을 바탕으로 어떻게 두 컨테이너를 연동하여 동작시킬 수 있는지 문서화 해본다.
+
+## Reference
+- [Docker run with link option](https://bluese05.tistory.com/54)
