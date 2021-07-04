@@ -24,4 +24,5 @@ public class SqsListenerHealthCheckController {
             return "No connected listener";
         }
     }
+
 }
