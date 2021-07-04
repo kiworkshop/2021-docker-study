@@ -1,5 +1,6 @@
 package kiworkshop.docker.webapp.sqs.config;
 
+import kiworkshop.docker.webapp.redis.RedisAccessService;
 import kiworkshop.docker.webapp.sqs.SqsListener;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,9 +30,9 @@ public class SqsReactiveConfig {
     }
 
     @Bean(DEOCKS_MESSAGE_LISTENER)
-    public SqsListener messageListener(SqsAsyncClient sqsAsyncClient) {
+    public SqsListener messageListener(SqsAsyncClient sqsAsyncClient, RedisAccessService redisAccessService) {
         try {
-            return new SqsListener(sqsAsyncClient);
+            return new SqsListener(sqsAsyncClient, redisAccessService);
         } catch (Exception e) {
             log.error("MessageListener creation exception : ", e);
             return null;

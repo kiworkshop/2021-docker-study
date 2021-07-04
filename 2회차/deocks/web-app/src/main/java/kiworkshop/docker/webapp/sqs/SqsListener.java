@@ -1,5 +1,7 @@
 package kiworkshop.docker.webapp.sqs;
 
+import kiworkshop.docker.webapp.redis.RedisAccessService;
+import kiworkshop.docker.webapp.redis.domain.MessageHistory;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
@@ -15,12 +17,14 @@ public class SqsListener {
     private static final String QUEUE_NAME = "deocks-queue";
 
     private final SqsAsyncClient sqsAsyncClient;
+    private final RedisAccessService redisAccessService;
 
     @Getter
     private final String queueUrl;
 
-    public SqsListener(SqsAsyncClient sqsAsyncClient) {
+    public SqsListener(SqsAsyncClient sqsAsyncClient, RedisAccessService redisAccessService) {
         this.sqsAsyncClient = sqsAsyncClient;
+        this.redisAccessService = redisAccessService;
         this.queueUrl = findQueueUrl(sqsAsyncClient);
     }
 
@@ -42,7 +46,7 @@ public class SqsListener {
             .maxNumberOfMessages(5)
             .queueUrl(queueUrl)
             .waitTimeSeconds(10)
-            .visibilityTimeout(30)
+            .visibilityTimeout(10)
             .build();
 
         Mono.fromFuture(() -> sqsAsyncClient.receiveMessage(request))
@@ -52,18 +56,20 @@ public class SqsListener {
             .flatMap(Flux::fromIterable)
             .subscribe(message -> {
                 log.info("message body: {}", message.body());
-                delete(message);
+                redisAccessService.saveHistory(new MessageHistory(message.messageId(), message.body()))
+                    .doOnError(throwable -> log.error("Message consume failed: ", throwable))
+                    .doOnSuccess(savedId -> delete(message))
+                    .subscribe();
             });
     }
 
     private void delete(Message message) {
-        String receiptHandle = message.receiptHandle();
         DeleteMessageRequest request = DeleteMessageRequest.builder()
             .queueUrl(queueUrl)
-            .receiptHandle(receiptHandle)
+            .receiptHandle(message.receiptHandle())
             .build();
 
         Mono.fromFuture(sqsAsyncClient.deleteMessage(request))
-            .subscribe(response -> log.info("deleted message with handle : {}", receiptHandle));
+            .subscribe(response -> log.info("deleted message id: {}", message.messageId()));
     }
 }
