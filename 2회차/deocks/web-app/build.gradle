@@ -33,6 +33,8 @@ dependencies {
     exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
   }
   testImplementation 'io.projectreactor:reactor-test'
+
+  implementation 'software.amazon.awssdk:sqs:2.16.95'
 }
 
 dependencyManagement {
