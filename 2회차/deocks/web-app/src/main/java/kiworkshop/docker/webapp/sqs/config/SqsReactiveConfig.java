@@ -1,6 +1,6 @@
 package kiworkshop.docker.webapp.sqs.config;
 
-import kiworkshop.docker.webapp.sqs.MessageListener;
+import kiworkshop.docker.webapp.sqs.SqsListener;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -29,9 +29,9 @@ public class SqsReactiveConfig {
     }
 
     @Bean(DEOCKS_MESSAGE_LISTENER)
-    public MessageListener messageListener(SqsAsyncClient sqsAsyncClient) {
+    public SqsListener messageListener(SqsAsyncClient sqsAsyncClient) {
         try {
-            return new MessageListener(sqsAsyncClient);
+            return new SqsListener(sqsAsyncClient);
         } catch (Exception e) {
             log.error("MessageListener creation exception : ", e);
             return null;

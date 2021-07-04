@@ -8,11 +8,10 @@ import software.amazon.awssdk.services.sqs.SqsAsyncClient;
 import software.amazon.awssdk.services.sqs.model.*;
 
 import javax.annotation.PostConstruct;
-import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
 
 @Slf4j
-public class MessageListener {
+public class SqsListener {
     private static final String QUEUE_NAME = "deocks-queue";
 
     private final SqsAsyncClient sqsAsyncClient;
@@ -20,7 +19,7 @@ public class MessageListener {
     @Getter
     private final String queueUrl;
 
-    public MessageListener(SqsAsyncClient sqsAsyncClient) {
+    public SqsListener(SqsAsyncClient sqsAsyncClient) {
         this.sqsAsyncClient = sqsAsyncClient;
         this.queueUrl = findQueueUrl(sqsAsyncClient);
     }
