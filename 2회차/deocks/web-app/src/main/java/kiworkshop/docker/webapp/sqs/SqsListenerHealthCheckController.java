@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SqsListenerHealthCheckController {
     private final ApplicationContext applicationContext;
 
-    @GetMapping("api/sqs/health")
+    @GetMapping("api/sqs-listener/health")
     public String health() {
         try {
             SqsListener listener = (SqsListener) applicationContext.getBean(SqsReactiveConfig.DEOCKS_MESSAGE_LISTENER);
