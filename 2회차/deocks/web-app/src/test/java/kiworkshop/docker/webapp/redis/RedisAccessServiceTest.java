@@ -1,6 +1,7 @@
 package kiworkshop.docker.webapp.redis;
 
 import kiworkshop.docker.webapp.redis.domain.MessageHistory;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * Redis container를 실제로 띄우고 연결하여 수행하여야 동작
  * Command 확인용으로 사용
  */
+@Disabled
 @SpringBootTest
 class RedisAccessServiceTest {
     @Autowired
