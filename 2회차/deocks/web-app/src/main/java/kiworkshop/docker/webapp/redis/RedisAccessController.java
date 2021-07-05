@@ -17,7 +17,7 @@ public class RedisAccessController {
 
     private final RedisAccessService redisAccessService;
 
-    @GetMapping("/api/redis/hi")
+    @GetMapping("/api/redis/health")
     public Mono<RedisResponse<String>> hiRedis() {
         return redisAccessService.countHistories()
             .map(count -> RedisResponse.successWith("Hi, I'm redis"));
