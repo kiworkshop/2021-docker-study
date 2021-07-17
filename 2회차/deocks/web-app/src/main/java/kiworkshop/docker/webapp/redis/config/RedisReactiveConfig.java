@@ -1,6 +1,9 @@
 package kiworkshop.docker.webapp.redis.config;
 
 import kiworkshop.docker.webapp.redis.domain.MessageHistory;
+import kiworkshop.docker.webapp.sqs.config.SqsProperties;
+import lombok.RequiredArgsConstructor;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -14,12 +17,16 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
+@EnableConfigurationProperties(RedisProperties.class)
+@RequiredArgsConstructor
 public class RedisReactiveConfig {
+
+    private final RedisProperties redisProperties;
 
     @Bean
     @Primary
     public ReactiveRedisConnectionFactory reactiveRedisConnectionFactory() {
-        RedisStandaloneConfiguration standaloneConfiguration = new RedisStandaloneConfiguration("localhost", 6379);
+        RedisStandaloneConfiguration standaloneConfiguration = new RedisStandaloneConfiguration(redisProperties.getHost(), redisProperties.getPort());
         return new LettuceConnectionFactory(standaloneConfiguration);
     }
 

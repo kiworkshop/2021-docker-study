@@ -2,6 +2,7 @@ package kiworkshop.docker.webapp.sqs;
 
 import kiworkshop.docker.webapp.redis.RedisAccessService;
 import kiworkshop.docker.webapp.redis.domain.MessageHistory;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
@@ -22,6 +23,7 @@ public class SqsListener {
     @Getter
     private final String queueUrl;
 
+    @Builder
     public SqsListener(SqsAsyncClient sqsAsyncClient, RedisAccessService redisAccessService) {
         this.sqsAsyncClient = sqsAsyncClient;
         this.redisAccessService = redisAccessService;
