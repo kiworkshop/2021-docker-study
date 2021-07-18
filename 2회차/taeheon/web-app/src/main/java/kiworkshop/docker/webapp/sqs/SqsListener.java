@@ -15,7 +15,7 @@ import java.util.concurrent.CompletableFuture;
 
 @Slf4j
 public class SqsListener {
-    private static final String QUEUE_NAME = "deocks-queue";
+    private static final String QUEUE_NAME = "sample";
 
     private final SqsAsyncClient sqsAsyncClient;
     private final RedisAccessService redisAccessService;
