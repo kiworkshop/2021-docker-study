@@ -16,7 +16,7 @@ public class SqsListenerHealthCheckController {
     @GetMapping("api/sqs-listener/health")
     public String health() {
         try {
-            SqsListener listener = (SqsListener) applicationContext.getBean(SqsReactiveConfig.DEOCKS_MESSAGE_LISTENER);
+            SqsListener listener = (SqsListener) applicationContext.getBean(SqsReactiveConfig.DD_MESSAGE_LISTENER);
             log.info("SQS listener: {}", listener.getQueueUrl());
             return "SQS Listener is listening " + listener.getQueueUrl();
         } catch (Exception e) {

@@ -30,7 +30,7 @@ public class SqsListener {
         this.queueUrl = findQueueUrl(sqsAsyncClient);
     }
 
-    private String findQueueUrl(SqsAsyncClient sqsAsyncClient) {
+    public String findQueueUrl(SqsAsyncClient sqsAsyncClient) {
         GetQueueUrlRequest request = GetQueueUrlRequest.builder()
             .queueName(QUEUE_NAME)
             .build();
@@ -65,7 +65,7 @@ public class SqsListener {
             });
     }
 
-    private void delete(Message message) {
+    public void delete(Message message) {
         DeleteMessageRequest request = DeleteMessageRequest.builder()
             .queueUrl(queueUrl)
             .receiptHandle(message.receiptHandle())

@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import software.amazon.awssdk.auth.credentials.*;
 import software.amazon.awssdk.regions.Region;
-import software.amazon.awssdk.regions.providers.DefaultAwsRegionProviderChain;
 import software.amazon.awssdk.services.sqs.SqsAsyncClient;
 
 import java.net.URI;
@@ -19,7 +18,7 @@ import java.net.URI;
 @EnableConfigurationProperties(SqsProperties.class)
 @RequiredArgsConstructor
 public class SqsReactiveConfig {
-    public static final String DEOCKS_MESSAGE_LISTENER = "deocks-listener";
+    public static final String DD_MESSAGE_LISTENER = "dd-listener";
 
     private final SqsProperties sqsProperties;
 
@@ -42,7 +41,7 @@ public class SqsReactiveConfig {
             .build();
     }
 
-    @Bean(DEOCKS_MESSAGE_LISTENER)
+    @Bean(DD_MESSAGE_LISTENER)
     public SqsListener messageListener(SqsAsyncClient sqsAsyncClient, RedisAccessService redisAccessService) {
         try {
             return new SqsListener(sqsAsyncClient, redisAccessService);
