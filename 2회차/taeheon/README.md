@@ -18,7 +18,7 @@ java -jar web-app.1.0.jar
 
 연결 시도할 SQS endpoint : localhost:4566
 
-연결 시도할 SQS 이름 : deocks-queue
+연결 시도할 SQS 이름 : sample
 
 연결 시도할 Redis endpoint : localhost:6379
 
@@ -26,10 +26,10 @@ java -jar web-app.1.0.jar
 
 1단계
 
-- [ ]  SQS listener health check 성공 메시지
-- [ ]  Redis health check 성공 메시지
-- [ ]  SQS에 메시지 송신하여 API server에서 메시지 수신 로그 찍히는 것 확인
-- [ ]  SQS에 메시지 송신하여 API server에서 Redis에 메시지 history 저장하는 것 확인
+- [x]  SQS listener health check 성공 메시지
+- [x]  Redis health check 성공 메시지
+- [x]  SQS에 메시지 송신하여 API server에서 메시지 수신 로그 찍히는 것 확인
+- [x]  SQS에 메시지 송신하여 API server에서 Redis에 메시지 history 저장하는 것 확인
 
 2단계
 
