@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: local
+
+server:
+  port: 8081
+
+sqs:
+  endpoint: http://localhost:4566
+
+redis:
+  host: localhost
+  port: 6379
