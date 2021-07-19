@@ -73,3 +73,10 @@ Localstack에서 sqs 서비스를 이용할 수 있도록 컨테이너를 생성
 docker pull localstack/localstack
 docker run -p 4566:4566 -p 4571:4571 -p 8080:8080 --env SERVICES=sqs {{locakstack-image-id}}
 ```
+```
+Hint 3 - web-app에 설정되어있는 sqs, redis endpoint를 app 실행시에 외부에서 주입해주고 싶다면
+
+java -jar web-app-1.0.jar --sqs.endpoint=http://{{$sqs-host}}:{{$sqs-port}} --redis.host={{$redis-host}} --redis.port={{$redis-port}}
+
+
+```
