@@ -13,6 +13,6 @@
 아래 발표 주제들에 대하여 학습하고 싶은 데까지 자유롭게 학습하고, 자유로운 양식으로 발표를 준비해 봅시다.
 
 - 도커 네트워크와 서비스 디스커버리
-- Docker compose의 프로젝트, 서비스, 컨테이너. Docker compose 네트워크 
+- Docker compose의 프로젝트, 서비스, 컨테이너. ~~Docker compose 네트워크~~
 - [pinpoint docker compose 리버스 엔지니어링](https://github.com/pinpoint-apm/pinpoint-docker)
 - [prometheus docker compose 리버스 엔지니어링](https://github.com/vegasbrianc/prometheus)
