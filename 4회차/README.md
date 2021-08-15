@@ -17,3 +17,7 @@
 - [ ] deprecated된 --link 옵션을 사용하지 않고 web-app에서 localstack sqs, redis와 컨테이너간 통신을 할 수 있도록 네트워크 환경을 구축한다.
 - [ ] 컨테이너간 의존관계에 따라 순차적으로 컨테이너들이 구축되도록 한다.
 - [ ] docker-compose.yml 파일이 있는 위치에서 ```docker-compose down -v``` 커멘드를 이용해 순차적으로 컨테이너들을 중지하고, 삭제되는 것을 확인한다.
+
+### hint
+- web-app에서 sqs 연결이 잘 되지 않는 경우 : https://howchoo.com/devops/how-to-add-a-health-check-to-your-docker-container 참고
+- localstack docker container health check 예시 : https://github.com/localstack/localstack/issues/1095
