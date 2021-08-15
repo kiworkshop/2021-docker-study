@@ -21,3 +21,4 @@
 ### hint
 - web-app에서 sqs 연결이 잘 되지 않는 경우 : https://howchoo.com/devops/how-to-add-a-health-check-to-your-docker-container 참고
 - localstack docker container health check 예시 : https://github.com/localstack/localstack/issues/1095
+- docker-compose depends_on의 condition syntax를 이용하면 의존하는 컨테이너의 라이프사이클을 이용해서 컨테이너 실행 타이밍을 조절할 수 있다.
