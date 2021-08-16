@@ -1,0 +1,27 @@
+version: '2.1'
+services:
+  localstack:
+    image: localstack/localstack
+    container_name: localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=sqs
+      - DATA_DIR=/tmp/localstack/data
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - HOSTNAME=localhost
+      - DEFAULT_REGION=ap-northeast-2
+    volumes:
+      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+  setup-localstack:
+    image: amazon/aws-cli:2.1.27
+    environment: # Key는 dummy 값임. 무의미한 Key를 지정한 것임.
+      - AWS_ACCESS_KEY_ID=EXAMPLE123
+      - AWS_SECRET_ACCESS_KEY=EXAMPLE123
+      - AWS_DEFAULT_REGION=ap-northeast-2
+    entrypoint: /bin/sh /tmp/init-aws.sh
+    volumes:
+      - ./init-aws.sh:/tmp/init-aws.sh
+    depends_on:
+      - localstack

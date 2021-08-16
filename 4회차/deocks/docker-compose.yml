@@ -1,0 +1,42 @@
+version: '3.7'
+
+networks:
+  deocks-net:
+    driver: bridge
+
+services:
+  web-app: 
+    image: dusol92/web-app:latest
+    ports:
+      - 8081:8081
+    networks:
+      - deocks-net
+    depends_on:
+      redis-host:
+        condition: service_started
+      sqs-host: 
+        condition: service_healthy
+    restart: always
+
+  sqs-host:
+    image: dusol92/localstack-sqs:latest
+    ports: 
+      - 4566:4566
+      - 4571:4571
+      - 8080:8080
+    networks:
+      - deocks-net
+    healthcheck:
+      test: aws --endpoint-url=http://localhost:4566 --region ap-northeast-2 sqs list-queues
+      interval: 5s
+      timeout: 1s
+      retries: 10
+    restart: always
+
+  redis-host:
+    image: redis:latest
+    ports: 
+      - 6379:6379
+    networks:
+      - deocks-net
+    restart: always
