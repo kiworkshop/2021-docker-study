@@ -106,6 +106,13 @@ docker push pageprologue/api-server
 
 ***
 
+### 4. Docker Hub
+https://hub.docker.com/repository/docker/pageprologue/localstack-queue
+https://hub.docker.com/repository/docker/pageprologue/api-server
+
+***
+
+
 ### Hint
 ```
 Hint 1- aws cli
